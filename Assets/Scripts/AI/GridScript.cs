@@ -5,18 +5,7 @@ using System.Linq;
 using UnityEngine;
 using static PathNode;
 
-/// <summary>
-/// The Grid
-/// A digital frontier
-/// I tried to picture clusters of information as they moved through the computer
-/// What did they look like? Ships? Motorcycles?
-/// Were the circuits like freeways?
-/// I kept dreaming of a world I thought I'd never see
-/// And then one day
-/// I got in
-///
-/// https://youtu.be/pDHBqK8gc_E
-/// </summary>
+
 public class GridScript : MonoBehaviour
 {
     public static Func<PathNode, PathNode, float> Heuristic = Dist;
@@ -59,11 +48,10 @@ public class GridScript : MonoBehaviour
             });
 
             if (node.Walkable)
-                node.Fade();
+                node.SetBlue();
             else
             {
-                node.Illuminate();
-                // Debug.Log("Not walkable!");
+                node.SetRed();
             }
         }
     }
@@ -88,7 +76,7 @@ public class GridScript : MonoBehaviour
                 {
                     ParentNode = null
                 };
-                grid[x, z].Fade();
+                grid[x, z].SetBlue();
             }
         }
     }
@@ -178,7 +166,7 @@ public class GridScript : MonoBehaviour
         print($"Nodes visited: {closed.Count}");
         while (path != null)
         {
-            path.Illuminate(NodeState.ActiveA_star);
+            path.SetRed(NodeState.ActiveA_star);
             path = path.ParentNode;
         }
     }
@@ -237,7 +225,7 @@ public class GridScript : MonoBehaviour
         print($"Nodes visited: {visited.Count}");
         while (path != null)
         {
-            path.Illuminate(NodeState.ActiveDijkstra);
+            path.SetRed(NodeState.ActiveDijkstra);
             path = path.ParentNode;
         }
     }

@@ -91,9 +91,6 @@ public class PathNode
     /// <summary>
     /// Расстояние между вершинами - разброс по высоте учитывается дополнительно
     /// </summary>
-    /// <param name="a"></param>
-    /// <param name="b"></param>
-    /// <returns></returns>
     public static float Dist(PathNode a, PathNode b)
     {
         Vector3 a_pos = a.body.transform.position;
@@ -110,9 +107,6 @@ public class PathNode
     /// <summary>
     /// Манхеттенское расстояние между двумя вершинами
     /// </summary>
-    /// <param name="a"></param>
-    /// <param name="b"></param>
-    /// <returns></returns>
     public static float Manhattan(PathNode a, PathNode b)
     {
         Vector3 a_pos = a.body.transform.position;
@@ -121,25 +115,9 @@ public class PathNode
     }
 
     /// <summary>
-    /// Расстояние Чебышева между двумя вершинами
+    /// Перекрасить в красный
     /// </summary>
-    /// <param name="a"></param>
-    /// <param name="b"></param>
-    /// <returns></returns>
-    public static float Chebyshev(PathNode a, PathNode b)
-    {
-        Vector3 a_pos = a.body.transform.position;
-        Vector3 b_pos = b.body.transform.position;
-        float dx = Mathf.Abs(a_pos.x - b_pos.x);
-        float dy = Mathf.Abs(a_pos.y - b_pos.y);
-        float dz = Mathf.Abs(a_pos.z - b_pos.z);
-        return Mathf.Max(dx, dy, dz);
-    }
-
-    /// <summary>
-    /// Подсветить вершину - перекрасить в красный
-    /// </summary>
-    public void Illuminate(NodeState state = NodeState.Walkable)
+    public void SetRed(NodeState state = NodeState.Walkable)
     {
         if (State == NodeState.Obstructed)
             return;
@@ -147,9 +125,9 @@ public class PathNode
     }
 
     /// <summary>
-    /// Снять подсветку с вершины - перекрасить в синий
+    /// Перекрасить в синий
     /// </summary>
-    public void Fade()
+    public void SetBlue()
     {
         if (State == NodeState.Obstructed)
             return;

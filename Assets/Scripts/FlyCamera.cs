@@ -58,7 +58,7 @@ public class FlyCamera : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            heuristic_index = (heuristic_index + 1) % 3;
+            heuristic_index = (heuristic_index + 1) % 2;
             switch (heuristic_index)
             {
                 case 0:
@@ -68,10 +68,6 @@ public class FlyCamera : MonoBehaviour
                 case 1:
                     GridScript.Heuristic = Manhattan;
                     print("Switched heuristic to Manhattan distance");
-                    break;
-                case 2:
-                    GridScript.Heuristic = Chebyshev;
-                    print("Switched heuristic to Chebyshev distance");
                     break;
             }
         }
